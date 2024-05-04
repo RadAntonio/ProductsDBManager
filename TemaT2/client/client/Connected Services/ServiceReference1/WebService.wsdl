@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="returnTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="returnTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="returnTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTables">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTablesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddItemToTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddItemToTableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteItemFromTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectedTableName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteItemFromTableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateItemInTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectedTableName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="newPrice" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="newDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateItemInTableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FilterItemsByPrice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectedTableName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxPrice" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="sign" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilterItemsByPriceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilterItemsByPriceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculateTotalPriceByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selectedTableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="selectedDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculateTotalPriceByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalculateTotalPriceByDateResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="returnTableSoapIn">
+    <wsdl:part name="parameters" element="tns:returnTable" />
+  </wsdl:message>
+  <wsdl:message name="returnTableSoapOut">
+    <wsdl:part name="parameters" element="tns:returnTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTables" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddItemToTableSoapIn">
+    <wsdl:part name="parameters" element="tns:AddItemToTable" />
+  </wsdl:message>
+  <wsdl:message name="AddItemToTableSoapOut">
+    <wsdl:part name="parameters" element="tns:AddItemToTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteItemFromTableSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteItemFromTable" />
+  </wsdl:message>
+  <wsdl:message name="DeleteItemFromTableSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteItemFromTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateItemInTableSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateItemInTable" />
+  </wsdl:message>
+  <wsdl:message name="UpdateItemInTableSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateItemInTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilterItemsByPriceSoapIn">
+    <wsdl:part name="parameters" element="tns:FilterItemsByPrice" />
+  </wsdl:message>
+  <wsdl:message name="FilterItemsByPriceSoapOut">
+    <wsdl:part name="parameters" element="tns:FilterItemsByPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculateTotalPriceByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:CalculateTotalPriceByDate" />
+  </wsdl:message>
+  <wsdl:message name="CalculateTotalPriceByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:CalculateTotalPriceByDateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="returnTable">
+      <wsdl:input message="tns:returnTableSoapIn" />
+      <wsdl:output message="tns:returnTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTables">
+      <wsdl:input message="tns:GetAllTablesSoapIn" />
+      <wsdl:output message="tns:GetAllTablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToTable">
+      <wsdl:input message="tns:AddItemToTableSoapIn" />
+      <wsdl:output message="tns:AddItemToTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemFromTable">
+      <wsdl:input message="tns:DeleteItemFromTableSoapIn" />
+      <wsdl:output message="tns:DeleteItemFromTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemInTable">
+      <wsdl:input message="tns:UpdateItemInTableSoapIn" />
+      <wsdl:output message="tns:UpdateItemInTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterItemsByPrice">
+      <wsdl:input message="tns:FilterItemsByPriceSoapIn" />
+      <wsdl:output message="tns:FilterItemsByPriceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateTotalPriceByDate">
+      <wsdl:input message="tns:CalculateTotalPriceByDateSoapIn" />
+      <wsdl:output message="tns:CalculateTotalPriceByDateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnTable">
+      <soap:operation soapAction="http://tempuri.org/returnTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTables">
+      <soap:operation soapAction="http://tempuri.org/GetAllTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToTable">
+      <soap:operation soapAction="http://tempuri.org/AddItemToTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemFromTable">
+      <soap:operation soapAction="http://tempuri.org/DeleteItemFromTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemInTable">
+      <soap:operation soapAction="http://tempuri.org/UpdateItemInTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterItemsByPrice">
+      <soap:operation soapAction="http://tempuri.org/FilterItemsByPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateTotalPriceByDate">
+      <soap:operation soapAction="http://tempuri.org/CalculateTotalPriceByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnTable">
+      <soap12:operation soapAction="http://tempuri.org/returnTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTables">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToTable">
+      <soap12:operation soapAction="http://tempuri.org/AddItemToTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemFromTable">
+      <soap12:operation soapAction="http://tempuri.org/DeleteItemFromTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemInTable">
+      <soap12:operation soapAction="http://tempuri.org/UpdateItemInTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterItemsByPrice">
+      <soap12:operation soapAction="http://tempuri.org/FilterItemsByPrice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateTotalPriceByDate">
+      <soap12:operation soapAction="http://tempuri.org/CalculateTotalPriceByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService">
+    <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
+      <soap:address location="https://localhost:44384/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
+      <soap12:address location="https://localhost:44384/WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
